@@ -1,3 +1,4 @@
+[![pipeline status](http://git.sunrizetech.cn/huangwb/webflow/badges/master/pipeline.svg)](http://git.sunrizetech.cn/huangwb/webflow/commits/master) [![coverage report](http://git.sunrizetech.cn/huangwb/webflow/badges/master/coverage.svg)](http://git.sunrizetech.cn/huangwb/webflow/commits/master)
 # 技术选型：
 
 1. Spring Boot 1.5.9
