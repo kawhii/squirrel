@@ -9,7 +9,8 @@ cache:
 #构建生命周期
 stages:
   - build
-  - build-docer
+  - build-docker
+  - stop-docker
   - deploy
 
 deploy:jdk8:
@@ -25,7 +26,7 @@ deploy:jdk8:
       - Dockerfile
 
 build:docker:
-  stage: build-docer
+  stage: build-docker
   script:
      - 'docker -H 192.168.100.249:2375 build -t 192.168.100.249:5000/huangwb/webflow:1.0 .'
      - 'docker -H 192.168.100.249:2375 push 192.168.100.249:5000/huangwb/webflow:1.0'
@@ -34,10 +35,19 @@ build:docker:
   image: docker
 
 #自动投测试环境
+stop-docker:test:
+  stage: stop-docker
+  script:
+    - 'docker -H 192.168.100.249:2375 rm -f webflow'
+  allow_failure: true
+  only:
+    - master
+  image: docker
+
+#自动投测试环境
 deploy:test:
   stage: deploy
   script:
-    - 'docker -H 192.168.100.249:2375 rm -f webflow'
     - 'docker -H 192.168.100.249:2375 run -d -p 8120:8080 --name webflow 192.168.100.249:5000/huangwb/webflow:1.0'
   environment:
     name: test
