@@ -6,7 +6,7 @@ cache:
   paths:
     - .m2/repository
 
-
+#构建生命周期
 stages:
   - build
   - build-docer
