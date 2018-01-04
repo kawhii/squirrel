@@ -16,4 +16,6 @@ mvn spring-boot:run
 ## 接口描述
 http://localhost:8080/swagger-ui.html
 
+demo: http://192.168.100.249:8120/swagger-ui.html
+
 工号：admin/admin
