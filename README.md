@@ -4,6 +4,12 @@
 2. Activiti 6.0.0
 
 
+# 运行
+
+```cmd
+mvn spring-boot:run
+```
+
 # 访问
 
 ## 接口描述
