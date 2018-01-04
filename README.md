@@ -1,8 +1,12 @@
 [![pipeline status](http://git.sunrizetech.cn/huangwb/webflow/badges/master/pipeline.svg)](http://git.sunrizetech.cn/huangwb/webflow/commits/master) [![coverage report](http://git.sunrizetech.cn/huangwb/webflow/badges/master/coverage.svg)](http://git.sunrizetech.cn/huangwb/webflow/commits/master)
+# 项目描述
+
+该项目为采用activiti进行构建工作流的流程，用于对OA的学习参考
+
 # 技术选型：
 
-1. Spring Boot 1.5.9
-2. Activiti 6.0.0
+* Spring Boot 1.5.9
+* Activiti 6.0.0
 
 
 # 运行
