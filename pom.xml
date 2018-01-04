@@ -61,6 +61,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <activiti.version>6.0.0</activiti.version>
+        <swagger.version>2.7.0</swagger.version>
     </properties>
     <!--为了加快速度，修改成国内的代理-->
     <repositories>
@@ -124,5 +125,28 @@
             </plugin>
         </plugins>
     </build>
-
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!--支持模式-->
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>io.springfox</groupId>
+                    <artifactId>springfox-swagger2</artifactId>
+                    <version>${swagger.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>io.springfox</groupId>
+                    <artifactId>springfox-swagger-ui</artifactId>
+                    <version>${swagger.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 </project>
