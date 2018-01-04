@@ -1,4 +1,8 @@
-package com.example;
+/*
+ * 版权所有.(c)2008-2018.广州市森锐科技股份有限公司
+ */
+
+package com.kawhii.workflow;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -43,7 +47,7 @@ public class OnboardingRequest {
 
         RepositoryService repositoryService = processEngine.getRepositoryService();
         Deployment deployment = repositoryService.createDeployment()
-                .addClasspathResource("onboarding.bpmn20.xml").deploy();
+                .addClasspathResource("processes/onboarding.bpmn20.xml").deploy();
         ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
                 .deploymentId(deployment.getId()).singleResult();
         System.out.println(
