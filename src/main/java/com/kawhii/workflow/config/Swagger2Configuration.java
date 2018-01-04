@@ -29,7 +29,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Profile({"dev", "test"})
 @Configuration
 @EnableSwagger2
-public class Swagger2Config {
+public class Swagger2Configuration {
     //http://springfox.github.io/springfox/docs/current/
     @Bean
     public Docket petApi() {
