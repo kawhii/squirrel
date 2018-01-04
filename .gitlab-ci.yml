@@ -1,0 +1,48 @@
+variables:
+  MAVEN_OPTS: "-Dmaven.test.skip=true -Dmaven.repo.local=.m2/repository -Djava.awt.headless=true"
+  MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
+
+cache:
+  paths:
+    - .m2/repository
+
+
+stages:
+  - build
+  - build-docer
+  - deploy
+
+deploy:jdk8:
+  stage: build
+  script:
+    - 'mvn $MAVEN_CLI_OPTS package'
+  only:
+    - master
+  image: maven:3.3.9-jdk-8
+  artifacts:
+    paths:
+      - target/*.jar
+      - Dockerfile
+
+build:docker:
+  stage: build-docer
+  script:
+     - 'docker -H 192.168.100.249:2375 build -t 192.168.100.249:5000/huangwb/webflow:1.0 .'
+     - 'docker -H 192.168.100.249:2375 push 192.168.100.249:5000/huangwb/webflow:1.0'
+  only:
+    - master
+  image: docker
+
+#自动投测试环境
+deploy:test:
+  stage: deploy
+  script:
+    - 'docker -H 192.168.100.249:2375 rm -f webflow'
+    - 'docker -H 192.168.100.249:2375 run -d -p 8120:8080 --name webflow 192.168.100.249:5000/huangwb/webflow:1.0'
+  environment:
+    name: test
+    url: http://192.168.100.249:8120
+  allow_failure: true
+  only:
+    - master
+  image: docker
