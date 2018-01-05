@@ -6,7 +6,7 @@
 # 技术选型：
 
 * Spring Boot 1.5.9
-* Activiti 6.0.0
+* [Activiti](https://www.activiti.org/) 6.0.0
 
 
 # 运行
