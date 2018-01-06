@@ -1,7 +1,13 @@
 
 package com.kawhii.workflow.config;
 
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.RuntimeService;
+import org.activiti.engine.TaskService;
 import org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -15,6 +21,8 @@ import org.springframework.context.annotation.Profile;
  */
 @Configuration
 public class ActivitiConfiguration {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ActivitiConfiguration.class);
+
     //开发环境配置
     @Bean
     @Profile("dev")
@@ -31,5 +39,17 @@ public class ActivitiConfiguration {
                 .setMailServerPort(5025)
         ;
         return processEngineConfiguration;
+    }
+
+    @Bean
+    public CommandLineRunner init(final RepositoryService repositoryService,
+                                  final RuntimeService runtimeService,
+                                  final TaskService taskService) {
+
+        return strings -> {
+            LOGGER.info("Number of process definitions : "
+                    + repositoryService.createProcessDefinitionQuery().count());
+            LOGGER.info("Number of tasks : " + taskService.createTaskQuery().count());
+        };
     }
 }
