@@ -1,26 +1,18 @@
 
 package com.kawhii.workflow.config;
 
-import org.activiti.engine.RepositoryService;
-import org.activiti.engine.RuntimeService;
-import org.activiti.engine.TaskService;
-import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.activiti.engine.test.ActivitiRule;
 import org.activiti.engine.test.ActivitiTestCase;
 import org.activiti.engine.test.Deployment;
-import org.junit.Rule;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * @author Carl
@@ -43,7 +35,6 @@ public class ActivitiConfigurationRuleTest extends ActivitiTestCase {
         variables.put("employeeName", "Kermit");
         variables.put("numberOfDays", new Integer(4));
         variables.put("vacationMotivation", "I'm really tired!");
-
         runtimeService.startProcessInstanceByKey("vacationRequest", variables);
         assertEquals(1, runtimeService.createProcessInstanceQuery().count());
     }
