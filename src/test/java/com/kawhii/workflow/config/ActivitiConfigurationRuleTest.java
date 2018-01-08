@@ -2,7 +2,6 @@
 package com.kawhii.workflow.config;
 
 import org.activiti.engine.task.Task;
-import org.activiti.engine.test.ActivitiRule;
 import org.activiti.engine.test.ActivitiTestCase;
 import org.activiti.engine.test.Deployment;
 import org.junit.Test;
@@ -30,7 +29,7 @@ public class ActivitiConfigurationRuleTest extends ActivitiTestCase {
 
     @Test
     @Deployment(resources = "processes/onboarding.bpmn20.xml")
-    public void startProcessInstanceByKey() {
+    public void testStartProcessInstanceByKey() {
         Map<String, Object> variables = new HashMap<>();
         variables.put("employeeName", "Kermit");
         variables.put("numberOfDays", new Integer(4));
@@ -41,8 +40,8 @@ public class ActivitiConfigurationRuleTest extends ActivitiTestCase {
 
     @Test
     @Deployment(resources = "processes/onboarding.bpmn20.xml")
-    public void completingTasks() {
-        startProcessInstanceByKey();
+    public void testCompletingTasks() {
+        testStartProcessInstanceByKey();
         List<Task> tasks = taskService.createTaskQuery().taskCandidateGroup("management").list();
         for (Task task : tasks) {
             LOGGER.info("Task available: " + task.getName());
