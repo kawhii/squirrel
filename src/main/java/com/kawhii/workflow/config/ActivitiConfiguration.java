@@ -43,7 +43,6 @@ public class ActivitiConfiguration {
 
     @Bean
     public CommandLineRunner init(final RepositoryService repositoryService,
-                                  final RuntimeService runtimeService,
                                   final TaskService taskService) {
 
         return strings -> {

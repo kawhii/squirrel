@@ -33,7 +33,6 @@ public class Swagger2Configuration {
                 .build()
                 .genericModelSubstitutes(ResponseEntity.class)
                 .useDefaultResponseMessages(false)
-                .tags(new Tag("Pet Service", "All apis relating to pets"))
-                ;
+                .tags(new Tag("Pet Service", "All apis relating to pets"));
     }
 }
